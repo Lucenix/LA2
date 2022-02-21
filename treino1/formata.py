@@ -25,3 +25,26 @@ def formata(codigo):
         build = build[:-2]
     
     return build+codigo[n-1]
+
+#80%
+def formata(codigo):
+    i = 0
+    n = len(codigo)
+    ident = 0
+    build = ""
+    while(i<n-1):
+        if ident and build[-1] == '\n':
+            if codigo[i] == '}':
+                ident -= 2
+            for j in range(0,ident):
+                build += ' '
+            while(codigo[i] == '\t' or codigo[i] == ' ' or codigo[i] == '\n'):
+                i+=1
+        build += codigo[i]
+        if codigo[i] == ';' or codigo[i] == '{' or codigo[i] == '}':
+            build += '\n'
+            if codigo[i] == '{':
+                ident += 2
+            
+        i+=1
+    return build+codigo[n-1]
