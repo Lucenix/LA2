@@ -2,7 +2,7 @@ def fun(isbn):
     total = 0
     flag = False
     for c in isbn:
-        total += int(c)%10 + 2*flag*(int(c)%10)
+        total += int(c)%10 + flag*2*(int(c)%10)
         flag = not flag
     return total
 

@@ -8,5 +8,4 @@ def hacker(log):
                 if num[i] != '*':
                     dic[email][i] = num[i]
     
-    listy = ["".join(dic[x]) for x in dic]
-    return sorted(zip(listy,dic), key = lambda n: (n[0].count('*'), n[1]))
+    return sorted(map(lambda n : ("".join(dic[n]), n), dic), key = lambda n: (n[0].count('*'), n[1]))
