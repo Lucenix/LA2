@@ -1,0 +1,9 @@
+Chaves dos pais são os vértices visitados (exceto o primeiro)
+Tudo o que era feito com hashtable é feito com dict.
+Para bfs, usar uma lista e fazer pop/append.
+	!!pop(0) tira o primeiro elemento da lista, não o último
+Só calcular os adjacentes quando forem preciso se o grafo não caber em memória.
+Pode ser que nem sequer valha a pena fazer o grafo -> robot lê diretamente da STRING e faz um conjunto/lista dos adjacentes na altura
+Lembrar:
+	Djikstra -> caminho mais curto
+	Prim -> arestas menos pesadas
