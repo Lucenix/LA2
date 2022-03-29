@@ -19,29 +19,28 @@ def erdos(artigos,n):
     return sorted(list(filter(lambda i: dist[i]<=n, dist)), key = lambda i: (dist[i], i))
 
 
-#nenhum deles dá 100% e n sei porquê
 def erdosIndirect(artigos,n):
-    grafo = dict()
+    grafo = {"Paul Erdos": []}
     for artigo in artigos:
-        conj = artigos[artigo]
-        for pessoa in conj:
+        for pessoa in artigos[artigo]:
             if pessoa not in grafo:
-                grafo[pessoa] = set()
-            grafo[pessoa].add(artigo)
+                grafo[pessoa] = list()
+            grafo[pessoa].append(artigo)
     dist = {}                    
-    if "Paul Erdos" in grafo:
-        queue = ["Paul Erdos"]
-        vis = {"Paul Erdos"}
-        dist["Paul Erdos"] = 0
-        while queue:
-            v = queue.pop(0)
-            print(v)
-            for artigo in grafo[v]:
-                for adj in artigos[artigo]:
-                    if adj not in vis:
-                        queue.append(adj)
-                        vis.add(adj)
-                        dist[adj] = dist[v] + 1
+    
+    queue = ["Paul Erdos"]
+    vis = {"Paul Erdos"}
+    dist["Paul Erdos"] = 0
+    last = 0
+    while queue and last<=n:
+        v = queue.pop(0)
+        for artigo in grafo[v]:
+            for adj in artigos[artigo]:
+                if adj not in vis:
+                    queue.append(adj)
+                    vis.add(adj)
+                    dist[adj] = dist[v] + 1
+                    last = dist[adj]
     #se pedir n para todos
     #for left in grafo:
     #    if left not in dist:
