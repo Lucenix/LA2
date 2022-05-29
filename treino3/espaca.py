@@ -1,20 +1,15 @@
 #def melhor? 80%
 def espaca(frase,palavras):
-    dic = {}
-    dic[0] = ['', 0]
-    n = len(frase)
-    for i in range(n-1, -1, -1):
-        #dic[i] = ['', 0]
+    dic = {0:[]}
+    mx = 0
+    for i in range(1, len(frase)+1):
         for palavra in palavras:
-            if frase[i:].startswith(palavra):
-                l = len(palavra)
-                if i+l == n:
-                    dic[i] = [palavra, l]
-                if i+l in dic:
-                    dic[i] = ['', 0]
-                    if l > dic[i][1]:
-                        dic[i] = [palavra + ' ' + dic[i+l][0], l]
-    return dic[0][0]
+            n = len(palavra)
+            if i-n in dic and frase[i-n:].startswith(palavra):
+                dic[i] = dic[i-n].copy()
+                dic[i].append(palavra)
+                mx = i
+    return ' '.join(dic[mx])
 
 #def iter 80%
 def espaca(frase,palavras):
